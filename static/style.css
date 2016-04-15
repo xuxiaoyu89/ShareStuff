@@ -1,0 +1,114 @@
+body {
+    margin: 0px;
+    background-image: url("/static/share.jpg");
+    background-repeat:no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+#header {
+    width: 80%;
+    height: 80px;
+    margin: 0px auto;
+    font-size: 55px;
+    background-color: rgba(255,255,255,.7);
+}
+
+#footer {
+    width: 80%;
+    height: 20px;
+    margin: 30px auto;
+    font-size: 20px;
+    text-align: center;
+}
+
+#navigator {
+    width: 80%;
+    height: 40px;
+    margin: 0px auto;
+    background-color: rgba(255,255,255,.7);
+}
+
+.navi_container {
+    display: inline-block;
+    width: 23%;
+}
+
+.navi {
+    margin: auto;
+    width:100%;
+    font-size: 30px;
+    text-align: center;
+}
+
+#title {
+    position: relative;
+    top: 10px;
+    width: 800px;
+    height: 60px;
+    text-align: center;
+    margin: auto;
+    color: #bf4040;
+}
+
+#login_register_container {
+    width: 600px;
+    height: 400px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, .7);
+}
+
+.form {
+    position: relative;
+    top: 100px;
+    left: 70px;
+    width: 350px;
+    margin: auto;
+}
+
+#login_register_form {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    top: 150px;
+    margin: auto;
+}
+
+#login_register_button {
+    position: relative;
+    left: 10px;
+}
+
+.form_container {
+    width: 600px;
+    height: 400px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, .7);
+}
+
+.list_container {
+    width: 600px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, .7);
+}
+
+.list {
+    width: 100%;
+    text-align: center; 
+}
+
+.info {
+    width: 600px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, .7);
+    text-align: center;
+}
+
+.message {
+    width: 600px;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, .7);
+}
+
+
+

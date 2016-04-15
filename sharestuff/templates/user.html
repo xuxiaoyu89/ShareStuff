@@ -1,0 +1,74 @@
+{% include "header.html" %}
+    {% csrf_token %}
+
+    <div class="info">
+        {% if loggedin and self_flag %}
+            <h2>Hi, {{ name }}!</h2>
+        {% else %}
+            <h2>User Info: </h2>
+            name: {{name}}<br>
+            email: {{email}}<br>
+        {% endif %}
+    </div>
+
+    <div class="list_container">
+        <div class="list">
+            {% if loggedin and self_flag %}
+                <h2>all your reservations:</h2>
+            {% else %}
+                <h2>all the reservations of this user:</h2>
+            {% endif %}
+
+            {% if reservations %}
+                {% for id, resource, starttime in reservations %}
+                    <a href="/reservation/{{id}}">{{resource}}</a>, reserved in {{starttime}} (UTD).
+                    {% if self_flag %}
+                    <a href="/delete_reservation/{{id}}">delete</a><br>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                no reservations found<br>
+            {% endif %}
+        </div>
+    </div>
+    {% if self_flag %}
+    <div class="list_container">
+        <div class="list">
+            <h2>all the resources in the system:</h2>
+            {% if resources %}
+                {% for id, resource, time in resources %}
+                    <a href="/resource/{{id}}">{{resource.name}}</a>, last reserved: {{time}} (UTD).
+                    <br>
+                {% endfor %}
+            {% else %}
+                no resources found<br>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    
+    <div class="list_container">
+        <div class="list">
+            {% if loggedin and self_flag %}
+                <h2>all your resources:</h2>
+            {% else %}
+                <h2>all the resources of this user:</h2>
+            {% endif %}
+
+            {% if myresources %}
+                {% for id, resource in myresources %}
+                    <a href="/resource/{{id}}">{{resource.name}}</a>
+                    <br>
+                {% endfor %}
+            {% else %}
+                no resources found;<br>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if self_flag %}
+    <div class="info">
+        <a class="btn" href="addResource">add your resource</a>
+    </div>
+    {% endif %}
+{% include "footer.html" %}

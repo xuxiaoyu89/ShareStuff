@@ -1,0 +1,65 @@
+{% include "header.html" %}
+    <div class="message">
+        {{message}}
+    </div>
+    <div class='form_container'>
+        <div class="form">
+            <h2>Search the website</h2>
+            Search By:
+            <select id="id_searchType" onchange="searchType()" name="searchType">
+                <option value="byname">by name</option>
+                <option value="bytime">by time</option>
+            </select>
+            <form id="search_form" method="post" action="search">
+                {% csrf_token %}
+                    {{ form.as_p }}
+                <div id="search_button">
+                    <input type="submit" name="submit" value="search" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if searched %}
+    <div class="list_container">
+        <div class="list">
+            <h2>search results for:</h2>
+            <h2>{{query}}</h2>
+            {% if resources %}
+                {% for id, resource in resources %}
+                    <a href="/resource/{{id}}">{{resource.name}}</a>
+                    <br>
+                {% endfor %}
+            {% else %}
+                no resources found<br>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+
+{% include "footer.html" %}
+<script type="text/javascript">
+searchType();
+function searchType(){
+    var name = document.getElementById('id_name').parentNode;
+    var time = document.getElementById('id_time').parentNode;
+    var duration = document.getElementById('id_duration').parentNode;
+    var choice = document.getElementById('id_searchType');
+    if (choice.value == "byname"){
+        name.style.display = "block";
+        time.style.display = "none";
+        duration.style.display = "none";
+        // remove the time and duration value
+        document.getElementById('id_time').value = '';
+        document.getElementById('id_duration').value = '';
+    }
+    else{
+        name.style.display = "none";
+        time.style.display = "block";
+        duration.style.display = "block";
+        // remove the name value
+        document.getElementById('id_name').value = '';
+    }
+}
+</script>

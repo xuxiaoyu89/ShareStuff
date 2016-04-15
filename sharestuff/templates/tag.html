@@ -1,0 +1,10 @@
+{% include "header.html" %}
+    {% csrf_token %}
+    <div class="list_container">
+        <h2>resources with tag: {{tagname}}</h2>
+        {% for id, resource in resources %}
+            <a href="/resource/{{id}}">{{resource.name}}</a>
+            <br>
+        {% endfor %}
+    </div>
+{% include "footer.html" %}

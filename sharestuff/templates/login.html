@@ -1,0 +1,27 @@
+{% include "header.html" %}
+    <div id="login_register_container">
+        <div class="message">
+            <p> {{ message }} </p>
+        </div>
+        <form id="login_register_form" method="post" action="login">
+            {% csrf_token %}
+            <table id="login_table">
+                {{ form.as_table }}
+            </table>
+            <div id="login_register_button">
+                <input type="submit" name="submit" value="login" />
+                or <a href="register">register</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="list_container">
+        <div class='list'>
+            <p>All the resources now available:</p>
+            {% for id, resource in resources %}
+                <a href="resource/{{id}}">{{resource.name}}</a>
+                <br>
+            {% endfor %}
+        </div>
+    </div>
+{% include "footer.html" %}

@@ -1,0 +1,9 @@
+{% include "header.html" %}
+    {% csrf_token %}
+    <div class="info">
+        <h2>info of this reservation:</h2>
+        user: <a href="/user/{{user_id}}">{{user_name}}</a><br>
+        resource:<a href="/resource/{{resource_id}}">{{resource_name}}</a><br>
+        <p>from: {{reservation.starttime}}, for {{reservation.duration}} hours</p>
+    </div>
+{% include "footer.html" %}

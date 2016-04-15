@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ShareStuff</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+    <div id="header">
+        <div id="title">
+            Share with the world!
+        </div>
+    </div>
+    <div id='navigator'>
+        <div class="navi_container">
+            <div class='navi'> 
+                <a href="/home">home</a> 
+            </div>
+        </div>
+        <div class="navi_container">
+            <div class='navi'>
+                <a href="/search">search</a>
+            </div>
+        </div>
+        <div class="navi_container">
+            <div class='navi'>
+                <a href="/addResource">add resource</a>
+            </div>
+        </div>
+        <div class="navi_container">
+            <div class='navi'>
+                {% csrf_token %}
+                {% if loggedin %}
+                <a href="/logout">log out</a>
+                {% else %}
+                <a href="/login">log in</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,69 @@
+{% include "header.html" %}
+    {% csrf_token %}
+    <div class="info">
+        <h2>information of this resource:</h2>
+        owner: <a href="/user/{{owner_id}}">{{owner_name}}</a><br>
+        <p>resource name: {{ resource.name }}</p>
+        {% if hasimage %}
+            <img src="/image/{{resource_id}}">
+        {% else %}
+            <img src="/static/noimage.jpg">
+        {% endif %}
+        {% if resource.description %}
+            <p>description: {{resource.description}}</p>
+        {% else %}
+            <p>description: no description available</p>
+        {% endif %}
+        <p>tags of this resource: 
+        {% for tag in resource.tags %}
+            <a href="/tag/{{tag}}">{{tag}}</a>
+        {% endfor %}
+        </p>
+        <p>available time: {{ resource.starttime }} - {{ resource.endtime }}</p>
+        <a href="/feeds/{{resource_id}}">RSS</a>
+    </div>
+
+    <div class="list_container">
+        <div class="list">
+            <h2>reservations of this resource:</h2>
+            {% if reservations %}
+                {% for id, name, reservation in reservations %}
+                    <a href="/reservation/{{id}}">{{name}} from {{reservation.starttime}} for {{reservation.duration}} hours</a><br>
+                {% endfor %}
+            {% else %}
+                no reservation found<br><br>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if isOwner %}
+    <div class="form_container">
+        <div class="form">
+            <h2>edit your resource:</h2>
+            <form id="edit_form" method="post" enctype="multipart/form-data" action="/editResource">
+                {% csrf_token %}
+                <table>
+                {{ edit_form.as_table }}
+                </table>
+                <input type="submit" name="submit" value="save" />
+            </form>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if not isOwner %}
+    <div class="form_container">
+        <div class="form">
+            <h2>make your reservation here:</h2>
+            {{message}} <br>
+            <form id="reserve_form" method="post" action="/reserve">
+                {% csrf_token %}
+                <table>
+                {{ reserve_form.as_table }}
+                </table>
+                <input type="submit" name="submit" value="reserve" />
+            </form>
+        </div>
+    </div>
+    {% endif %}
+{% include "footer.html" %}
